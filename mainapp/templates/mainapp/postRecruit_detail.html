@@ -1,0 +1,68 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-9">
+        <br>
+        <br>
+        <div class="card">
+            <h4 class="card-header">詳細</h4>
+            <div class="card-body">
+                <h5><span>曲名:</span>&nbsp;&nbsp;<strong>{{ object.song }}</strong></h5>
+                <br>
+                <h5><span>募集パート:</span>&nbsp;&nbsp;{{ object.parts }}</h5>
+                <br>
+                <h5>コメント</h5>
+                <p class="card-text">・・・&nbsp;&nbsp;{{ object.comment }}</p>
+                <br>
+                <h5><span>募集者:</span>&nbsp;&nbsp;{{ object.author }}</h5>
+                <br>
+                <a class="btn" href="" style="background-color:#FF6699; color:white;">お気に入りに入れる</a>
+                {% if object.author == request.user %}
+                {% else %}
+                <a href="{% url 'mainapp:a_post_create' %}" class="btn btn-primary">応募</a>
+                {% endif %}
+                <hr>
+
+                <a href="javascript:void(0);" onclick="window.history.back();" class="btn btn-outline-dark">戻る</a>
+                {% if object.author == request.user %}
+                <a href="{% url 'mainapp:post_update' object.id %}" class="btn btn-primary">更新</a>
+                <a href="{% url 'mainapp:post_delete' object.id %}" class="btn btn-outline-danger">削除</a>
+                {% endif %}
+            </div>
+            <br>
+        </div>
+
+    </div>
+    <br>
+    <br>
+</div>
+
+<!-- <div class="row">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for item in a_post_list %}
+        <div class="col-md-6">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <style>
+                            .small {
+                                font-size: 18px;
+                            }
+                        </style>
+                        <h3>{{ item.a_parts }}</h3>
+                        <!-- <h4 class="card-title"><strong>{{ item.a_parts }}</strong></h4>
+                        <p><span class="small">募集者：&nbsp;{{ item.a_author }}</span></p>
+                        <hr>
+                        <p class="card-text">{{ item.a_comment }}</p> -->
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">{{ item.a_created_at.date }}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div> -->
+
+{% endblock %}

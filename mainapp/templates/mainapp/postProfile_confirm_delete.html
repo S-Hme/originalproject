@@ -1,0 +1,33 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-9">
+        <br>
+        <h2>プロフィール削除</h2>
+        <br>
+        <div class="alert alert-danger" role="alert">
+            <form method="post">
+                {% csrf_token %}
+                <p>以下の内容を本当に削除しますか？</p>
+                <input type="submit" class="btn btn-outline-danger" value="削除する">
+            </form>
+        </div>
+        <br>
+        <p>サークルネーム</p>
+        {{ object.p_author }}
+        <hr>
+        <p>自己紹介</p>
+        {{ object.introduction }}
+        <p>主な担当パート</p>
+        {{ object.p_part }}
+        <br>
+        <br>
+        <br>
+
+    </div>
+</div>
+
+
+
+
+{% endblock %}

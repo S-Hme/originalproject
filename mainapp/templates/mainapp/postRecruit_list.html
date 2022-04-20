@@ -1,0 +1,37 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+<div class="row">
+    {% if request.user.is_authenticated %}
+    <div class="col-md-9">
+        <br>
+        <h2>投稿一覧</h2>
+        <br>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th width = "200px">曲名</th>
+                    <th>募集パート</th>
+                    <th width = "200px">作成日時</th>
+                    <th>更新日時</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in postrecruit_list %}
+                <tr>
+                    <td><a href="{% url 'mainapp:post_detail' item.id %}">{{ item.song }}</a></td>
+                    <td>{{ item.parts }}</td>
+                    <td>{{ item.created_at.date }}</td>
+                    <td>{{ item.update_at.date }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+    {% endif %}
+</div>
+
+
+
+
+{% endblock %}

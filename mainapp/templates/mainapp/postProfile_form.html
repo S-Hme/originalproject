@@ -1,0 +1,60 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-9">
+        <br>
+        <h2>投稿ページ</h2>
+        <br>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class = "btn btn-warning">投稿</button>
+            <br>
+            <br>
+            <div class="form-group">
+                <label>性別</label>
+                {{ form.sex }}
+            </div>
+            <br>
+            <div class="form-group">
+                <label>自己紹介</label>
+                {{ form.introduction }}
+            </div>
+            <br>
+            <div class="form-group">
+                <label>主な担当パート</label>
+                {{ form.p_part }}
+            </div>
+            <br>
+            <div class="form-group">
+                <label>高音域</label>
+                {{ form.high }}
+            </div>
+            <br>
+            <div class="form-group">
+                <label>中音域</label>
+                {{ form.middle }}
+            </div>
+            <br>
+            <div class="form-group">
+                <label>低音域</label>
+                {{ form.low }}
+            </div>
+            <br>
+            <div class="form-group">
+                <label>空いている時間帯</label>
+                {{ form.freetime }}
+            </div>
+            <br>
+            
+
+
+
+        </form>
+
+    </div>
+</div>
+
+
+
+
+{% endblock %}

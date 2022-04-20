@@ -1,0 +1,35 @@
+{% extends 'mainapp/base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-9">
+        <br>
+        <h2>検索結果</h2>
+        <br>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>サークルネーム</th>
+                    <th>性別</th>
+                    <th>主な担当パート</th>
+                    <th>投稿日時</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in search_list %}
+                <tr>
+                    <td><u><a href="{% url 'mainapp:p_post_detail' item.id %}">{{ item.p_author }}</a></u></td>
+                    <td>{{ item.sex }}</td>
+                    <td>{{ item.p_part|truncatechars_html:30 }}</td>
+                    <td>{{ item.freetime|truncatechars_html:30 }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <br>
+        <h2>ユーザー登録</h2>
+        <br>
+        <form action="" method="post">
+
+            <p>※ユーザー名は他のメンバーと被らないサークルネームにしてください。</p>
+            <br>
+
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            {% for field in form %}
+                {{ field.label }}
+                {{ field }}
+                {{ field.errors }}
+            <br>
+            {% endfor %}
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit"class="btn btn-warning">登録</button>
+            <br>
+            <br>
+
+
+
+
+        </form>
+
+    </div>
+</div>
+
+
+
+
+{% endblock %}

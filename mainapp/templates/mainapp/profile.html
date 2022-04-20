@@ -1,0 +1,59 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+
+<br>
+<br>
+<div>
+    <div class="p-4 shadow-4 rounded-3" style="background-color: hsl(0, 0%, 94%);">
+        <h1>プロフィール一覧</h1><br>
+
+        {% if request.user.is_authenticated %}
+        <div class="d-flex align-items-center">
+            <form action="{% url 'mainapp:p_search' %}" class="d-flex input-group w-auto" method="POST">
+                {% csrf_token %}
+                <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+                    name="freeword" />
+                <span class="input-group-text border-0" id="search-addon">
+                    <i class="fas fa-search"></i>
+                </span>
+            </form>
+            <div style="text-align:center">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                        data-mdb-toggle="dropdown" aria-expanded="false">
+                        音域別（得意・やや得意）
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li>
+                            <a class="dropdown-item" href="{% url 'mainapp:p_h_search' %}">高音域</a>
+                            <a class="dropdown-item" href="{% url 'mainapp:p_m_search' %}">中音域</a>
+                            <a class="dropdown-item" href="{% url 'mainapp:p_l_search' %}">低音域</a>
+                        </li>
+                    </ul>
+                </li>
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-9 g-4">
+        {% if request.user.is_authenticated %}
+        {% for item in post_list %}
+        <div class="card">
+            <h3 class="card-header"><strong>{{ item.p_author }}</strong></h3>
+            <div class="card-body">
+                <h5 class="card-title">{{ item.sex }}</h5>
+                <p class="card-text"><big>{{ item.introduction }}</big></p>
+                <a href="{% url 'mainapp:p_post_detail' item.id %}" class="btn btn-primary">詳細</a>
+            </div>
+        </div>
+        <br>
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+<!-- Jumbotron -->
+<div>
+    <div class="p-4 shadow-4 rounded-3" style="background-color: hsl(0, 0%, 94%);">
+        <h1>My Bands</h1>
+        <p>バンド結成アプリケーション</p>
+        <br>
+        {% if request.user.is_authenticated %}
+        <div class="d-flex align-items-center">
+            <form action="{% url 'mainapp:search' %}" class="d-flex input-group w-auto" method="POST">
+                {% csrf_token %}
+                <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" name="freeword" />
+                <span class="input-group-text border-0" id="search-addon">
+                    <i class="fas fa-search"></i>
+                </span>
+            </form>
+        </div>
+        {% endif %}
+    </div>
+</div>
+<!-- /Jumbotron -->
+
+<div class="row">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% if request.user.is_authenticated %}
+        {% for item in post_list %}
+        <div class="col-md-6">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <style>
+                            .small{
+                                font-size: 18px;
+                            }
+                        </style>
+                        <h4 class="card-title"><strong>{{ item.song }}</strong></h4>
+                        <p><span class="small">募集者：&nbsp;{{ item.author }}</span></p>
+                        <hr>
+                        <p class="card-text">{{ item.parts }}</p>
+                        <p class="card-text">{{ item.comment }}</p>
+                        <a href="{% url 'mainapp:post_detail' item.id %}" class="btn btn-primary">詳細</a>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">{{ item.created_at.date }}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% endif %}
+    </div>
+</div>
+
+
+{% endblock %}
