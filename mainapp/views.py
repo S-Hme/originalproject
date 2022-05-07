@@ -91,48 +91,48 @@ class PostList(ListView):
     def get_queryset(self):
         return PostRecruit.objects.all().order_by('-created_at')
 
-@login_required
-def Like_add(request,post_id):  #お気に入りを登録する処理
-    post = PostRecruit.objects.get(id = post_id)
+# @login_required
+# def Like_add(request,post_id):  #お気に入りを登録する処理
+#     post = PostRecruit.objects.get(id = post_id)
     
-    is_liked = Like.objects.filter(user = request.user, post = post_id).count()
-    if is_liked > 0:  #同じ投稿を何度もお気に入りに追加できないようにする処理
-        messages.info(request,'すでにお気に入りに追加済みです')
-        return redirect('mainapp:postRecruit_detail', post.id)
+#     is_liked = Like.objects.filter(user = request.user, post = post_id).count()
+#     if is_liked > 0:  #同じ投稿を何度もお気に入りに追加できないようにする処理
+#         messages.info(request,'すでにお気に入りに追加済みです')
+#         return redirect('mainapp:postRecruit_detail', post.id)
 
-    like = Like()
-    like.user = request.user
-    like.post = post
-    like.save()
+#     like = Like()
+#     like.user = request.user
+#     like.post = post
+#     like.save()
 
-    messages.success(request,'お気に入りに追加しました')
-    return redirect('mainapp:postRecruit_detail', post.id)
+#     messages.success(request,'お気に入りに追加しました')
+#     return redirect('mainapp:postRecruit_detail', post.id)
 
 # ////////////////////////////////////////////////////////////////////////////
 
-# @login_required
-# def Like_add(request,post_id):
-#     post = PostRecruit.objects.get(id = post_id)
-#     is_like = Like.objects.filter(User=request.user).filter(post=post).count()
-#     #unlike
-#     if is_like == 1:
-#         like = Like.objects.filter(User=request.user.id).filter(post=post)
-#         like.delete()
-#         post.count -= 1
-#         post.save()
+@login_required
+def Like_add(request,post_id):
+    post = PostRecruit.objects.get(id = post_id)
+    is_like = Like.objects.filter(User=request.user).filter(post=post).count()
+    #unlike
+    if is_like == 1:
+        like = Like.objects.filter(User=request.user.id).filter(post=post)
+        like.delete()
+        post.count -= 1
+        post.save()
 
-#         messages.success(request,'お気に入りから削除しました')
+        messages.success(request,'お気に入りから削除しました')
 
-#         return redirect('mainapp:postRecruit_detail', post.id)
-#     #like
-#     if is_like == 0:
-#         post.count += 1
-#         post.save()
-#         Like.objects.create(User=request.user, post=post)
+        return redirect('mainapp:postRecruit_detail', post.id)
+    #like
+    if is_like == 0:
+        post.count += 1
+        post.save()
+        Like.objects.create(User=request.user, post=post)
 
-#         messages.success(request,'お気に入りに追加しました')
+        messages.success(request,'お気に入りに追加しました')
 
-#         return redirect('mainapp:postRecruit_detail', post.id)
+        return redirect('mainapp:postRecruit_detail', post.id)
 
 # //////////////////////////////////////////////////////////////////////////////////
 
