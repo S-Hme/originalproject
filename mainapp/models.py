@@ -24,6 +24,11 @@ class PostRecruit(models.Model):
     def __str__(self):
         return self.song
 
+class Like(models.Model):
+    post = models.ForeignKey(PostRecruit, verbose_name="投稿", on_delete=models.CASCADE)
+    user = models.ForeignKey(User, verbose_name="Likeしたユーザー", on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
 class PostApplication(models.Model):
     a_author = models.ForeignKey(User, verbose_name="応募したユーザー", on_delete=models.PROTECT, blank=False)
     a_parts = models.TextField('応募パート', max_length=50)

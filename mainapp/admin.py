@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import High, PostApplication, PostRecruit, PostProfile, Sex, High, Middle, Low
+from .models import PostApplication, PostRecruit, PostProfile, Sex, High, Middle, Low, Like
 
 
 @admin.register(PostRecruit)
@@ -39,3 +39,9 @@ class MiddleAdomin(admin.ModelAdmin):
 class LowAdomin(admin.ModelAdmin):
     list_display = ('id', 'lowtone',)
     list_display_links = ('lowtone',)
+
+@admin.register(Like)
+class LikeAdomin(admin.ModelAdmin):
+    list_display = ('id', 'post', 'user', 'created_at',)
+    list_display_links = ('post',)
+    ordering = ('-created_at',)
