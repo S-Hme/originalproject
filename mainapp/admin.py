@@ -42,6 +42,5 @@ class LowAdomin(admin.ModelAdmin):
 
 @admin.register(Like)
 class LikeAdomin(admin.ModelAdmin):
-    list_display = ('id', 'post', 'user', 'created_at',)
+    list_display = ('id', 'post', 'user',)
     list_display_links = ('post',)
-    ordering = ('-created_at',)

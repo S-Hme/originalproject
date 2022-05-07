@@ -24,31 +24,37 @@
 <div class="row">
     <div class="row row-cols-1 row-cols-md-3 g-4">
         {% if request.user.is_authenticated %}
-        {% for item in post_list %}
-        <div class="col-md-6">
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                        <style>
-                            .small{
-                                font-size: 18px;
-                            }
-                        </style>
-                        <h4 class="card-title"><strong>{{ item.song }}</strong></h4>
-                        <p><span class="small">募集者：&nbsp;{{ item.author }}</span></p>
-                        <hr>
-                        <p class="card-text">{{ item.parts }}</p>
-                        <p class="card-text">{{ item.comment }}</p>
-                        <a href="{% url 'mainapp:post_detail' item.id %}" class="btn btn-primary">詳細</a>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">{{ item.created_at.date }}</small>
+            {% for item in post_list %}
+            <div class="col-md-6">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <style>
+                                .small{
+                                    font-size: 18px;
+                                }
+                            </style>
+                            <h4 class="card-title"><strong>{{ item.song }}</strong></h4>
+                            <p><span class="small">募集者：&nbsp;{{ item.author }}</span></p>
+                            <hr>
+                            <p class="card-text">{{ item.parts }}</p>
+                            <p class="card-text">{{ item.comment }}</p>
+                            <a href="{% url 'mainapp:post_detail' item.id %}" class="btn btn-primary">詳細</a>&nbsp;&nbsp;
+                            {% if request.user in item.like.all %}
+                            <i class="fas fa-heart" style="color: rgb(230, 66, 66);"></i>
+                            {% else %}
+                            <i class="far fa-heart"></i>
+                            {% endif %}
+
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">{{ item.created_at.date }}</small>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        {% endfor %}
-    {% endif %}
+            {% endfor %}
+        {% endif %}
     </div>
 </div>
 
