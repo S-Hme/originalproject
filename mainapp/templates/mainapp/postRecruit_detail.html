@@ -16,11 +16,11 @@
                 <br>
                 <h5><span>募集者:</span>&nbsp;&nbsp;{{ object.author }}</h5>
                 <br>
-                <a class="btn" href="{% url 'mainapp:like_add' object.id  %}" style="background-color:#FF6699; color:white;">お気に入りに入れる</a>
-                {% if object.author == request.user %}
+                <a class="btn" href="{% url 'mainapp:like_add' object.id  %}" style="background-color:#FF6699; color:white;">お気に入り</a>
+                <!-- {% if object.author == request.user %}
                 {% else %}
                 <a href="{% url 'mainapp:a_post_create' %}" class="btn btn-primary">応募</a>
-                {% endif %}
+                {% endif %} -->
                 <hr>
 
                 <a href="javascript:void(0);" onclick="window.history.back();" class="btn btn-outline-dark">戻る</a>

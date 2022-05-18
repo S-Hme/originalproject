@@ -118,6 +118,14 @@ def Like_add(request,post_id):  #お気に入りを登録する処理
 
     return redirect('mainapp:post_detail', post.id)
 
+
+class LikeList(ListView):
+    model = Like
+    # paginate_by = 5
+
+    def get_queryset(request):
+        return Like.objects.all().filter(user = request.user)
+
 # ////////////////////////////////////////////////////////////////////////////
 
 # @login_required
