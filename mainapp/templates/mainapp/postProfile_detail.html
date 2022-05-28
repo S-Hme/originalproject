@@ -12,9 +12,9 @@
                 <h5><span>性別:</span>&nbsp;&nbsp;{{ object.sex }}</h5>
                 <br>
                 <h5>自己紹介</h5>
-                <p class="card-text">・・・&nbsp;&nbsp;{{ object.introduction }}</p>
+                <p class="card-text">・・・&nbsp;&nbsp;{{ object.introduction | linebreaksbr | urlizetrunc:15 }}</p>
                 <br>
-                <h5><span>主な担当パート:</span>&nbsp;&nbsp;{{ object.p_part }}</h5>
+                <h5><span>主な担当パート:</span>&nbsp;&nbsp;{{ object.p_part | linebreaksbr }}</h5>
                 <br>
                 <h5><span>高音域:</span>&nbsp;&nbsp;{{ object.high }}</h5>
                 <br>
@@ -23,7 +23,7 @@
                 <h5><span>低音域:</span>&nbsp;&nbsp;{{ object.low }}</h5>
                 <br>
                 <h5>空いている時間帯</h5>
-                <p class="card-text">・・・&nbsp;&nbsp;{{ object.freetime }}</p>
+                <p class="card-text">・・・&nbsp;&nbsp;{{ object.freetime | linebreaksbr | urlizetrunc:15 }}</p>
                 <br>
                 {% if object.p_author == request.user %}
                 {% else %}

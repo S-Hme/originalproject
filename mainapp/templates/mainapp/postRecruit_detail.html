@@ -9,10 +9,10 @@
             <div class="card-body">
                 <h5><span>曲名:</span>&nbsp;&nbsp;<strong>{{ object.song }}</strong></h5>
                 <br>
-                <h5><span>募集パート:</span>&nbsp;&nbsp;{{ object.parts }}</h5>
+                <h5><span>募集パート:</span>&nbsp;&nbsp;{{ object.parts | linebreaksbr }}</h5>
                 <br>
                 <h5>コメント</h5>
-                <p class="card-text">・・・&nbsp;&nbsp;{{ object.comment }}</p>
+                <p class="card-text">・・・&nbsp;&nbsp;{{ object.comment | linebreaksbr | urlizetrunc:15 }}</p>
                 <br>
                 <h5><span>募集者:</span>&nbsp;&nbsp;{{ object.author }}</h5>
                 <br>

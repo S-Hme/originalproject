@@ -121,10 +121,26 @@ def Like_add(request,post_id):  #お気に入りを登録する処理
 
 class LikeList(ListView):
     model = Like
+    raise_exception = True
     # paginate_by = 5
 
     def get_queryset(request):
-        return Like.objects.all().filter(user = request.user)
+
+        # post = PostRecruit.objects.get(id = self.kwargs['pk'])
+        # return post.author == self.request.user
+
+        rUser = request.user
+
+        pUser = Like.objects.all().filter(user = rUser).user
+
+        like_list = PostRecruit.objects.all().filter(author = pUser)
+
+        # return PostRecruit.objects.all().filter(author__username = Like.objects.all().filter(user__username = request))
+
+        return like_list
+
+
+
 
 # ////////////////////////////////////////////////////////////////////////////
 

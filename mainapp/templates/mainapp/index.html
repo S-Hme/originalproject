@@ -38,7 +38,7 @@
                             <p><span class="small">募集者：&nbsp;{{ item.author }}</span></p>
                             <hr>
                             <p class="card-text">{{ item.parts }}</p>
-                            <p class="card-text">{{ item.comment }}</p>
+                            <p class="card-text">{{ item.comment|truncatechars:60 }}</p>
                             <a href="{% url 'mainapp:post_detail' item.id %}" class="btn btn-primary">詳細</a>&nbsp;&nbsp;
                             {% if request.user in item.like.all %}
                             <i class="fas fa-heart" style="color: rgb(230, 66, 66);"></i>
