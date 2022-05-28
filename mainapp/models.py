@@ -27,6 +27,14 @@ class PostRecruit(models.Model):
 class Like(models.Model):
     post = models.ForeignKey(PostRecruit, verbose_name="投稿", on_delete=models.CASCADE)
     user = models.ForeignKey(User, verbose_name="Likeしたユーザー", on_delete=models.CASCADE)
+
+
+    # ⬇の関数は実験
+    def like_post(self,request):   
+        lUser = request.user
+        a = Like.objects.filter(user = lUser)
+        n = PostRecruit.objects.filter(song = a)
+        return n
     
 class PostApplication(models.Model):
     a_author = models.ForeignKey(User, verbose_name="応募したユーザー", on_delete=models.PROTECT, blank=False)

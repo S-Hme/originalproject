@@ -6,6 +6,8 @@
         <br>
         <h2>投稿一覧</h2>
         <br>
+        {% include 'mainapp/pagination.html' %}
+        <br>
         <table class="table">
             <thead>
                 <tr>
@@ -26,6 +28,9 @@
                 {% endfor %}
             </tbody>
         </table>
+        <br>
+        {% include 'mainapp/pagination.html' %}
+        <br>
 
     </div>
     {% endif %}

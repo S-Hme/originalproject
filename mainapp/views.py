@@ -91,7 +91,7 @@ class PostDelete(OnlyMyPostMixin, DeleteView): #投稿を削除する処理
 
 class PostList(ListView):
     model = PostRecruit
-    # paginate_by = 5
+    paginate_by = 5
 
     def get_queryset(self):
         return PostRecruit.objects.all().order_by('-created_at')
@@ -129,15 +129,15 @@ class LikeList(ListView):
         # post = PostRecruit.objects.get(id = self.kwargs['pk'])
         # return post.author == self.request.user
 
-        rUser = request.user
+        # rUser = request.user
 
-        pUser = Like.objects.all().filter(user = rUser).user
+        # pUser = Like.objects.all().filter(user = rUser).user
 
-        like_list = PostRecruit.objects.all().filter(author = pUser)
+        # like_list = PostRecruit.objects.all().filter(author = pUser)
 
         # return PostRecruit.objects.all().filter(author__username = Like.objects.all().filter(user__username = request))
 
-        return like_list
+        return Like.like_post
 
 
 
