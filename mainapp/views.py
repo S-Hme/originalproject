@@ -1,8 +1,9 @@
 from re import template
+from urllib import request
 from django.shortcuts import render,resolve_url
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import TemplateView,CreateView,DetailView,UpdateView,DeleteView,ListView
-from .models import Post, PostRecruit, PostApplication, PostProfile, Like
+from .models import LikeProfile, Post, PostRecruit, PostApplication, PostProfile, Like
 from django.urls import reverse_lazy
 from .forms import LoginForm, PostApplicationForm, PostForm, PostProfileForm, SearchForm, SignUpForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin #ログインを義務づける処理、投稿主のみ許可する処理
@@ -120,27 +121,15 @@ def Like_add(request,post_id):  #お気に入りを登録する処理
 
 
 class LikeList(ListView):
-    model = Like
-    raise_exception = True
-    # paginate_by = 5
+    model = PostRecruit
+    template_name = 'mainapp/like_list.html'
 
-    def get_queryset(request):
+    def get_queryset(self):
 
-        # post = PostRecruit.objects.get(id = self.kwargs['pk'])
-        # return post.author == self.request.user
-
-        # rUser = request.user
-
-        # pUser = Like.objects.all().filter(user = rUser).user
-
-        # like_list = PostRecruit.objects.all().filter(author = pUser)
-
-        # return PostRecruit.objects.all().filter(author__username = Like.objects.all().filter(user__username = request))
-
-        return Like.like_post
-
-
-
+        # a = Like.objects.all().filter(user = self.request.user)
+        # return a
+        # PostRecruit.objects.all().filter(song = a.post)
+        return Like.objects.all().filter(user = self.request.user)
 
 # ////////////////////////////////////////////////////////////////////////////
 
@@ -300,6 +289,42 @@ class PostProfileDelete(OnlyMyProfileMixin, DeleteView): #投稿を削除する�
     def get_success_url(self):
         messages.info(self.request, 'プロフィールを削除しました。')
         return resolve_url('mainapp:profile')
+
+@login_required
+def Like_profile_add(request,post_id):  #お気に入りを登録する処理
+    profile = PostProfile.objects.get(id = post_id)
+    
+    is_liked = LikeProfile.objects.filter(user = request.user, profile = post_id).count()
+
+    if is_liked > 0:  #お気に入りから削除する処理
+
+        liked = LikeProfile.objects.filter(user = request.user, profile = post_id)
+        liked.delete()
+        messages.info(request,'お気に入りから削除しました')
+
+    if is_liked == 0: #お気に入りに登録する処理
+
+        like = LikeProfile()
+        like.user = request.user
+        like.profile = profile
+        like.save()
+        messages.success(request,'お気に入りに追加しました')
+
+    return redirect('mainapp:p_post_detail', post_id)
+
+
+class LikeProfileList(ListView):
+    model = PostProfile
+    template_name = 'mainapp/likeProfile_list.html'
+
+    def get_queryset(self):
+
+        # a = Like.objects.all().filter(user = self.request.user)
+        # return a
+        # PostRecruit.objects.all().filter(song = a.post)
+        return LikeProfile.objects.all()
+
+        # .filter(user = self.request.user)
 
 
 def SearchProfile(request):

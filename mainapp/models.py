@@ -24,18 +24,6 @@ class PostRecruit(models.Model):
     def __str__(self):
         return self.song
 
-class Like(models.Model):
-    post = models.ForeignKey(PostRecruit, verbose_name="投稿", on_delete=models.CASCADE)
-    user = models.ForeignKey(User, verbose_name="Likeしたユーザー", on_delete=models.CASCADE)
-
-
-    # ⬇の関数は実験
-    def like_post(self,request):   
-        lUser = request.user
-        a = Like.objects.filter(user = lUser)
-        n = PostRecruit.objects.filter(song = a)
-        return n
-    
 class PostApplication(models.Model):
     a_author = models.ForeignKey(User, verbose_name="応募したユーザー", on_delete=models.PROTECT, blank=False)
     a_parts = models.TextField('応募パート', max_length=50)
@@ -61,6 +49,16 @@ class PostProfile(models.Model):
     
     def __str__(self):
         return self.introduction
+
+class Like(models.Model):
+    post = models.ForeignKey(PostRecruit, verbose_name="投稿", on_delete=models.CASCADE)
+    user = models.ForeignKey(User, verbose_name="Likeしたユーザー", on_delete=models.CASCADE)
+
+
+class LikeProfile(models.Model):
+    profile = models.ForeignKey(PostProfile, verbose_name="Likeされたプロフィール", on_delete=models.CASCADE)
+    user = models.ForeignKey(User, verbose_name="Likeしたユーザー", on_delete=models.CASCADE)
+
 
 class Sex(models.Model):
     sex = models.CharField('性別', max_length=10)

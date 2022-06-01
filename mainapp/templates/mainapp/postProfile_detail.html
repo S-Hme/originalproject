@@ -27,11 +27,11 @@
                 <br>
                 {% if object.p_author == request.user %}
                 {% else %}
-                <a class="btn" href="" style="background-color:#FF6699; color:white;">お気に入りに入れる</a>
+                <a class="btn" href="{% url 'mainapp:like_profile_add' object.id  %}" style="background-color:#FF6699; color:white;">お気に入り</a>
                 {% endif %}
                 <hr>
 
-                <a href="javascript:void(0);" onclick="window.history.back();" class="btn btn-outline-dark">戻る</a>
+                <a href="{% url 'mainapp:profile' %}" class="btn btn-outline-dark">戻る</a>
                 {% if object.p_author == request.user %}
                 <a href="{% url 'mainapp:p_post_update' object.id %}" class="btn btn-primary">更新</a>
                 <a href="{% url 'mainapp:p_post_delete' object.id %}" class="btn btn-outline-danger">削除</a>

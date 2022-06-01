@@ -23,7 +23,8 @@
                 {% endif %} -->
                 <hr>
 
-                <a href="javascript:void(0);" onclick="window.history.back();" class="btn btn-outline-dark">戻る</a>
+                <!-- <a href="javascript:void(0);" onclick="window.history.back();" class="btn btn-outline-dark">戻る</a> -->
+                <a href="{% url 'mainapp:index' %}" class="btn btn-outline-dark">戻る</a>
                 {% if object.author == request.user %}
                 <a href="{% url 'mainapp:post_update' object.id %}" class="btn btn-primary">更新</a>
                 <a href="{% url 'mainapp:post_delete' object.id %}" class="btn btn-outline-danger">削除</a>

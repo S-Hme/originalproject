@@ -26,6 +26,8 @@ urlpatterns = [
     path('p_l_search', views.SearchLowtoneProfile, name='p_l_search'),
     path('like/<int:post_id>', views.Like_add, name='like_add'),
     path('like_list', views.LikeList.as_view(),name='like_list'),
+    path('like_profile/<int:post_id>', views.Like_profile_add, name='like_profile_add'),
+    path('like_profile_list', views.LikeProfileList.as_view(),name='like_profile_list'),
 ]
 
 # /<int:postRecruit_id　の部分は試作段階
