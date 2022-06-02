@@ -17,6 +17,7 @@ class PostRecruit(models.Model):
     song = models.CharField('曲名', max_length=30)
     parts = models.TextField('募集パート', max_length=50)
     comment = models.TextField('コメント', max_length=1000)
+    praTime = models.TextField('練習時間帯', max_length=300)
     # category = models.ForeignKey('Category', on_delete=models.PROTECT)
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now = True)

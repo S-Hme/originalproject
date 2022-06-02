@@ -4,7 +4,7 @@ from .models import PostApplication, PostRecruit, PostProfile, Sex, High, Middle
 
 @admin.register(PostRecruit)
 class PostAdomin(admin.ModelAdmin):
-    list_display = ('id', 'author', 'song', 'parts', 'comment', 'created_at',)
+    list_display = ('id', 'author', 'song', 'parts', 'comment','praTime', 'created_at',)
     list_display_links = ('song',)
     ordering = ('-created_at',)
 

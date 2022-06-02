@@ -8,22 +8,22 @@
             <h4 class="card-header">詳細</h4>
             <div class="card-body">
                 <h5><span>サークルネーム:</span>&nbsp;&nbsp;<strong>{{ object.p_author }}</strong></h5>
-                <br>
+                <hr>
                 <h5><span>性別:</span>&nbsp;&nbsp;{{ object.sex }}</h5>
-                <br>
+                <hr>
                 <h5>自己紹介</h5>
                 <p class="card-text">・・・&nbsp;&nbsp;{{ object.introduction | linebreaksbr | urlizetrunc:15 }}</p>
-                <br>
+                <hr>
                 <h5><span>主な担当パート:</span>&nbsp;&nbsp;{{ object.p_part | linebreaksbr }}</h5>
-                <br>
+                <hr>
                 <h5><span>高音域:</span>&nbsp;&nbsp;{{ object.high }}</h5>
                 <br>
                 <h5><span>中音域:</span>&nbsp;&nbsp;{{ object.middle }}</h5>
                 <br>
                 <h5><span>低音域:</span>&nbsp;&nbsp;{{ object.low }}</h5>
-                <br>
+                <hr>
                 <h5>空いている時間帯</h5>
-                <p class="card-text">・・・&nbsp;&nbsp;{{ object.freetime | linebreaksbr | urlizetrunc:15 }}</p>
+                <p class="card-text">{{ object.freetime | linebreaksbr | urlizetrunc:15 }}</p>
                 <br>
                 {% if object.p_author == request.user %}
                 {% else %}

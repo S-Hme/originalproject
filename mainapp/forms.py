@@ -9,7 +9,7 @@ from .models import PostRecruit
 class PostForm(forms.ModelForm):
     class Meta:
         model = PostRecruit
-        fields = ('song', 'parts', 'comment')
+        fields = ('song', 'parts', 'comment', 'praTime')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

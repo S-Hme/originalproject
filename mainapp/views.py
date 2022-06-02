@@ -267,7 +267,7 @@ def Search(request):
 
         if searchform.is_valid():
             freeword = searchform.cleaned_data['freeword']
-            search_list = PostRecruit.objects.filter(Q(author__username = freeword)|Q(song__icontains = freeword)|Q(parts__icontains = freeword)|Q(comment__icontains = freeword))
+            search_list = PostRecruit.objects.filter(Q(author__username = freeword)|Q(song__icontains = freeword)|Q(parts__icontains = freeword)|Q(comment__icontains = freeword)|Q(praTime__icontains = freeword))
 
         params = {
             'search_list': search_list,
@@ -322,7 +322,7 @@ class LikeProfileList(ListView):
         # a = Like.objects.all().filter(user = self.request.user)
         # return a
         # PostRecruit.objects.all().filter(song = a.post)
-        return LikeProfile.objects.all()
+        return LikeProfile.objects.filter(user = self.request.user)
 
         # .filter(user = self.request.user)
 

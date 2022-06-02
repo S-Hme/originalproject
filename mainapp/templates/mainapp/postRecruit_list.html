@@ -11,8 +11,9 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th width = "200px">曲名</th>
+                    <th width = "170px">曲名</th>
                     <th>募集パート</th>
+                    <th width = "100px">募集者</th>
                     <th width = "200px">作成日時</th>
                     <th>更新日時</th>
                 </tr>
@@ -22,6 +23,7 @@
                 <tr>
                     <td><a href="{% url 'mainapp:post_detail' item.id %}">{{ item.song }}</a></td>
                     <td>{{ item.parts }}</td>
+                    <td>{{ item.author }}</td>
                     <td>{{ item.created_at.date }}</td>
                     <td>{{ item.update_at.date }}</td>
                 </tr>

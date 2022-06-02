@@ -7,13 +7,16 @@
         <div class="card">
             <h4 class="card-header">詳細</h4>
             <div class="card-body">
-                <h5><span>曲名:</span>&nbsp;&nbsp;<strong>{{ object.song }}</strong></h5>
-                <br>
-                <h5><span>募集パート:</span>&nbsp;&nbsp;{{ object.parts | linebreaksbr }}</h5>
-                <br>
+                <h5>曲名:</span>&nbsp;&nbsp;<strong>{{ object.song }}</strong></h5>
+                <hr>
+                <h5>募集パート:</span>&nbsp;&nbsp;{{ object.parts }}</h5>
+                <hr>
                 <h5>コメント</h5>
-                <p class="card-text">・・・&nbsp;&nbsp;{{ object.comment | linebreaksbr | urlizetrunc:15 }}</p>
-                <br>
+                <p class="card-text">{{ object.comment | linebreaksbr | urlizetrunc:15 }}</p>
+                <hr>
+                <h5>練習時間帯</h5>
+                <p class="card-text">{{ object.praTime | linebreaksbr | urlizetrunc:15 }}</p>
+                <hr>
                 <h5><span>募集者:</span>&nbsp;&nbsp;{{ object.author }}</h5>
                 <br>
                 <a class="btn" href="{% url 'mainapp:like_add' object.id  %}" style="background-color:#FF6699; color:white;">お気に入り</a>
