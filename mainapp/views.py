@@ -181,23 +181,18 @@ class SignUp(CreateView):
 
 
 class APostCreate(LoginRequiredMixin, CreateView): #投稿するときの処理
-    model = PostApplication
     form_class = PostApplicationForm
     success_url = reverse_lazy('mainapp:index')
 
-    # def a_form_valid(self, form):     元から作っておいたa_form_valid
-    #     form.instance.a_author_id = self.request.user.id
-    #     return super(APostCreate, self).a_form_valid(form)
-
-    def form_valid(self, form):    #ユニサポから持ってきて少し変えてみたa_form_valid
+    def form_valid(self,form,post_id): 
         
-        post_pk = self.kwargs["pk"]
-        post = get_object_or_404(PostRecruit, pk=post_pk)
-        Note = form.save(commit=False)
-        Note.target = post
-        Note.a_author = self.request.user
-        Note.save()
-        return redirect("PostDetail", pk=post_pk)
+        post = PostRecruit.objects.get(id = post_id)
+
+        application = PostApplication()
+        application.a_target = post
+        application.save()
+        form.instance.a_author_id = self.request.user.id
+        return super(APostCreate, self).form_valid(form)
 
 
     def a_get_success_url(self):
