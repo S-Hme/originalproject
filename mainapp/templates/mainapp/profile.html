@@ -45,7 +45,7 @@
             <h3 class="card-header"><strong>{{ item.p_author }}</strong></h3>
             <div class="card-body">
                 <h5 class="card-title">{{ item.sex }}</h5>
-                <p class="card-text"><big>{{ item.introduction }}</big></p>
+                <p class="card-text"><big>{{ item.introduction|truncatechars:80 }}</big></p>
                 <a href="{% url 'mainapp:p_post_detail' item.id %}" class="btn btn-primary">詳細</a>
             </div>
         </div>

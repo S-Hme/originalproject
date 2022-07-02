@@ -12,7 +12,7 @@
                     <th>募集者</th>
                     <th>曲名</th>
                     <th>募集パート</th>
-                    <th>投稿日時</th>
+                    <th>更新日時</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,7 +21,7 @@
                     <td>{{ item.author }}</td>
                     <td><u><a href="{% url 'mainapp:post_detail' item.id %}">{{ item.song }}</a></u></td>
                     <td>{{ item.parts }}</td>
-                    <td>{{ item.created_at }}</td>
+                    <td>{{ item.update_at.date }}</td>
                 </tr>
                 {% endfor %}
             </tbody>

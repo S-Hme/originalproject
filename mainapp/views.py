@@ -31,7 +31,7 @@ class Index(TemplateView):
 
     def get_context_data(self, *args,**kwargs):
         context = super().get_context_data(**kwargs)
-        post_list = PostRecruit.objects.all().order_by('-created_at')
+        post_list = PostRecruit.objects.all().order_by('-update_at')
         context = {
             'post_list': post_list, 
         }
@@ -95,7 +95,7 @@ class PostList(ListView):
     paginate_by = 5
 
     def get_queryset(self):
-        return PostRecruit.objects.all().order_by('-created_at')
+        return PostRecruit.objects.all().order_by('-update_at')
 
 @login_required
 def Like_add(request,post_id):  #お気に入りを登録する処理
@@ -234,7 +234,7 @@ class Profile(TemplateView): #
 
     def get_context_data(self, *args,**kwargs):
         context = super().get_context_data(**kwargs)
-        post_list = PostProfile.objects.all().order_by('-p_created_at')
+        post_list = PostProfile.objects.all().order_by('-p_update_at')
         context = {
             'post_list': post_list, 
         }

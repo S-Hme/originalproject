@@ -10,16 +10,18 @@
             <thead>
                 <tr>
                     <th width = "200px">曲名</th>
+                    <th>募集パート</th>
+                    <th>練習時間帯</th>
                     <th>募集者</th>
-                    <th>いいねしたユーザー</th>
                 </tr>
             </thead>
             <tbody>
                 {% for item in like_list %}
                 <tr>
                     <td><a href="{% url 'mainapp:post_detail' item.post.id %}">{{ item.post }}</a></td>
+                    <td>{{ item.post.parts }}</td>
+                    <td>{{ item.post.praTime }}</td>
                     <td>{{ item.post.author }}</td>
-                    <td>{{ item.user }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
